@@ -1,3 +1,126 @@
-model = "gpt-5"
+model = "gpt-5-codex"
+model_reasoning_effort = "high"
 
-# Consider setting [mcp_servers] here!
+# ─── Playwright ───────────────────────────────────
+[mcp_servers.playwright]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "@playwright/mcp@latest"]
+startup_timeout_ms = 180000
+env = {APPDATA      = "C:\\Users\\kaixie\\AppData\\Roaming",LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local",HOME= "C:\\Users\\kaixie",SystemRoot   = "C:\\Windows",NODE_OPTIONS = "--dns-result-order=ipv4first"}
+
+# ─── Context7 ─────────────────────────────────────
+[mcp_servers.context7]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "@upstash/context7-mcp", "--api-key", "${CONTEXT7_API_KEY}"]
+startup_timeout_ms = 120000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Supabase ─────────────────────────────────────
+[mcp_servers.supabase]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "@supabase/mcp-server-supabase@latest", "--read-only", "--project-ref", "${SUPABASE_PROJECT_REF}"]
+startup_timeout_ms = 120000
+env = {APPDATA= "C:\\Users\\kaixie\\AppData\\Roaming",LOCALAPPDATA= "C:\\Users\\kaixie\\AppData\\Local",HOME= "C:\\Users\\kaixie",SystemRoot= "C:\\Windows",NODE_OPTIONS= "--dns-result-order=ipv4first",SUPABASE_ACCESS_TOKEN  = "${SUPABASE_ACCESS_TOKEN}"}
+
+# ─── GitHub ───────────────────────────────────────
+[mcp_servers.github]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-github@latest"]
+startup_timeout_ms = 60000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Memory ───────────────────────────────────────
+[mcp_servers.memory]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-memory@latest"]
+startup_timeout_ms = 60000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Filesystem ───────────────────────────────────
+[mcp_servers.filesystem]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-filesystem@latest"]
+startup_timeout_ms = 60000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Sequential-Thinking ──────────────────────────
+[mcp_servers.sequential_thinking]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-sequential-thinking@latest"]
+startup_timeout_ms = 60000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Puppeteer ────────────────────────────────────
+[mcp_servers.puppeteer]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-puppeteer@latest"]
+startup_timeout_ms = 90000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Time ─────────────────────────────────────────
+[mcp_servers.time]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "time-mcp@latest"]
+startup_timeout_ms = 30000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Fetcher ──────────────────────────────────────
+[mcp_servers.fetcher]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "fetcher-mcp@latest"]
+startup_timeout_ms = 30000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Snyk Security ────────────────────────────────
+[mcp_servers.snyk_security]
+type = "stdio"
+command = "cmd"
+args = ["/c", "npx", "-y", "snyk@latest", "mcp", "-t", "stdio"]
+startup_timeout_ms = 60000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── Graphiti ─────────────────────────────────────
+[mcp_servers.graphiti]
+type = "stdio"
+command = "cmd"
+args = ["/c", "uv", "run", "--directory", "C:/workspace/graphiti/mcp_server", "graphiti_mcp_server.py", "--transport", "stdio"]
+startup_timeout_ms = 60000
+[mcp_servers.graphiti.env]
+APPDATA        = "C:\\Users\\kaixie\\AppData\\Roaming"
+LOCALAPPDATA   = "C:\\Users\\kaixie\\AppData\\Local"
+HOME           = "C:\\Users\\kaixie"
+SystemRoot     = "C:\\Windows"
+NODE_OPTIONS   = "--dns-result-order=ipv4first"
+GOOGLE_API_KEY = "AIzaSyC4YW25znj-zTc0BwEYmXf446XP8rNBFes"
+MODEL_NAME     = "gemini-2.5-pro"
+EMBEDDER_MODEL = "models/text-embedding-004"
+NEO4J_URI      = "bolt://127.0.0.1:7687"
+NEO4J_USER     = "neo4j"
+NEO4J_PASSWORD = "graphiti123!"
+
+
+# ─── Zen ──────────────────────────────────────────
+[mcp_servers.zen]
+type = "stdio"
+command = "cmd"
+args = ["/c", "C:/workspace/zen-mcp-server/.zen_venv/Scripts/python.exe", "C:/workspace/zen-mcp-server/server.py"]
+startup_timeout_ms = 90000
+env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+
+# ─── 工具开关 & 受信项目示例 ───────────────────────
+[tools]
+web_search = true
+
+[projects.'C:/workspace/PTrade_trading']
+trust_level = "trusted"
+
