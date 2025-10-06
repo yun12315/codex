@@ -111,6 +111,48 @@ command = "cmd"
 args = ["/c", "C:/workspace/zen-mcp-server/.zen_venv/Scripts/python.exe", "C:/workspace/zen-mcp-server/server.py"]
 startup_timeout_ms = 90000
 env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+ 
+# ─── Stock（SSE → stdio 桥）────────────────────────
+[mcp_servers.stock]
+type    = "stdio"
+command = "cmd"
+args    = [
+  "/c",
+  "npx",
+  "-y",
+  "@gonzaloafidalgo/mcp-sse-bridge",     # SSE ↔ stdio
+  "http://82.156.17.205/cnstock/sse",    # 远端 SSE URL
+  "--header", "API_KEY: value"           # 若服务需要鉴权
+]
+startup_timeout_ms = 30000
+
+[mcp_servers.stock.env]
+APPDATA      = "C:\\Users\\kaixie\\AppData\\Roaming"
+LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local"
+HOME         = "C:\\Users\\kaixie"
+SystemRoot   = "C:\\Windows"
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+API_KEY      = "value"                   # 可省；已放到 header
+
+# ─── Taskmaster-AI ────────────────────────────────
+[mcp_servers.'taskmaster-ai']
+type    = "stdio"
+command = "cmd"
+args    = ["/c", "npx", "-y", "--package=task-master-ai", "task-master-ai"]
+startup_timeout_ms = 60000
+[mcp_servers.'taskmaster-ai'.env]
+APPDATA            = "C:\\Users\\kaixie\\AppData\\Roaming"
+LOCALAPPDATA       = "C:\\Users\\kaixie\\AppData\\Local"
+HOME               = "C:\\Users\\kaixie"
+SystemRoot         = "C:\\Windows"
+NODE_OPTIONS       = "--dns-result-order=ipv4first"
+
+GOOGLE_API_KEY     = "AIzaSyDPTT3g5eqGER_rSkrXfypDGyQW45AeNnc"
+ANTHROPIC_API_KEY  = "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"
+OPENAI_API_KEY     = "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"
+OPENROUTER_API_KEY = "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"
+XAI_API_KEY        = "xai-NV4cljzI3pwrL60WDedxpAVnbahutH3UEur1rEephauyWpuEqgHZdEElSZfcTCyIHpnqTQDg3qoDFm90"
+OLLAMA_API_KEY     = "YOUR_OLLAMA_API_KEY_HERE"
 
 # ─── 工具开关 & 受信项目示例 ───────────────────────
 [tools]
