@@ -65,30 +65,6 @@ args = ["/c", "npx", "-y", "@modelcontextprotocol/server-puppeteer@latest"]
 startup_timeout_ms = 90000
 env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
 
-# ─── Time ─────────────────────────────────────────
-[mcp_servers.time]
-type = "stdio"
-command = "cmd"
-args = ["/c", "npx", "-y", "time-mcp@latest"]
-startup_timeout_ms = 30000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
-
-# ─── Fetcher ──────────────────────────────────────
-[mcp_servers.fetcher]
-type = "stdio"
-command = "cmd"
-args = ["/c", "npx", "-y", "fetcher-mcp@latest"]
-startup_timeout_ms = 30000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
-
-# ─── Snyk Security ────────────────────────────────
-[mcp_servers.snyk_security]
-type = "stdio"
-command = "cmd"
-args = ["/c", "npx", "-y", "snyk@latest", "mcp", "-t", "stdio"]
-startup_timeout_ms = 60000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
-
 # ─── Graphiti ───────────────────────────────────── 
 [mcp_servers.graphiti]
 type = "stdio"
@@ -141,6 +117,9 @@ env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Use
 web_search = true
 
 [projects.'C:/workspace/PTrade_trading']
+trust_level = "trusted"
+
+[projects.'C:\Windows\System32']
 trust_level = "trusted"
 
 
