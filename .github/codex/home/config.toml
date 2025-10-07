@@ -1,158 +1,165 @@
 model = "gpt-5-codex"
 model_reasoning_effort = "high"
 
-# ─── Playwright ───────────────────────────────────
-[mcp_servers.playwright]
-type = "stdio"
-command = "cmd"
-args = ["/c", "npx", "-y", "@playwright/mcp@latest"]
-startup_timeout_ms = 180000
-env = {APPDATA      = "C:\\Users\\kaixie\\AppData\\Roaming",LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local",HOME= "C:\\Users\\kaixie",SystemRoot   = "C:\\Windows",NODE_OPTIONS = "--dns-result-order=ipv4first"}
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["chrome-devtools-mcp@latest"]
+[mcp_servers.chrome-devtools.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
 
-# ─── Context7 ─────────────────────────────────────
 [mcp_servers.context7]
-type = "stdio"
 command = "cmd"
 args = ["/c", "npx", "-y", "@upstash/context7-mcp", "--api-key", "${CONTEXT7_API_KEY}"]
-startup_timeout_ms = 120000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+startup_timeout_sec = 120.0
+[mcp_servers.context7.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
 
-# ─── Supabase ─────────────────────────────────────
-[mcp_servers.supabase]
-type = "stdio"
-command = "cmd"
-args = ["/c", "npx", "-y", "@supabase/mcp-server-supabase@latest", "--read-only", "--project-ref", "${SUPABASE_PROJECT_REF}"]
-startup_timeout_ms = 120000
-env = {APPDATA= "C:\\Users\\kaixie\\AppData\\Roaming",LOCALAPPDATA= "C:\\Users\\kaixie\\AppData\\Local",HOME= "C:\\Users\\kaixie",SystemRoot= "C:\\Windows",NODE_OPTIONS= "--dns-result-order=ipv4first",SUPABASE_ACCESS_TOKEN  = "${SUPABASE_ACCESS_TOKEN}"}
-
-# ─── GitHub ───────────────────────────────────────
-[mcp_servers.github]
-type = "stdio"
-command = "cmd"
-args = ["/c", "npx", "-y", "@modelcontextprotocol/server-github@latest"]
-startup_timeout_ms = 60000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
-
-# ─── Memory ───────────────────────────────────────
-[mcp_servers.memory]
-type = "stdio"
-command = "cmd"
-args = ["/c", "npx", "-y", "@modelcontextprotocol/server-memory@latest"]
-startup_timeout_ms = 60000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
-
-# ─── Filesystem ───────────────────────────────────
 [mcp_servers.filesystem]
-type = "stdio"
 command = "cmd"
 args = ["/c", "npx", "-y", "@modelcontextprotocol/server-filesystem@latest"]
-startup_timeout_ms = 60000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+startup_timeout_sec = 60.0
+[mcp_servers.filesystem.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
 
-# ─── Sequential-Thinking ──────────────────────────
-[mcp_servers.sequential_thinking]
-type = "stdio"
+[mcp_servers.github]
 command = "cmd"
-args = ["/c", "npx", "-y", "@modelcontextprotocol/server-sequential-thinking@latest"]
-startup_timeout_ms = 60000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-github@latest"]
+startup_timeout_sec = 60.0
+[mcp_servers.github.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
 
-# ─── Puppeteer ────────────────────────────────────
+[mcp_servers.graphiti]
+command = "cmd"
+args = ["/c", "uv", "run", "--directory", "C:/workspace/graphiti/mcp_server", "graphiti_mcp_server.py", "--transport", "stdio"]
+startup_timeout_sec = 60.0
+[mcp_servers.graphiti.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+EMBEDDER_MODEL = "models/text-embedding-004"
+GOOGLE_API_KEY = "AIzaSyC4YW25znj-zTc0BwEYmXf446XP8rNBFes"
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+MODEL_NAME = "gemini-2.5-pro"
+NEO4J_PASSWORD = "graphiti123!"
+NEO4J_URI = "bolt://127.0.0.1:7687"
+NEO4J_USER = "neo4j"
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+PYTHONIOENCODING = "utf-8"
+PYTHONUNBUFFERED = "1"
+SystemRoot = 'C:\Windows'
+
+[mcp_servers.memory]
+command = "cmd"
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-memory@latest"]
+startup_timeout_sec = 60.0
+[mcp_servers.memory.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
+
+[mcp_servers.playwright]
+command = "cmd"
+args = ["/c", "npx", "-y", "@playwright/mcp@latest"]
+startup_timeout_sec = 180.0
+[mcp_servers.playwright.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
+
 [mcp_servers.puppeteer]
-type = "stdio"
 command = "cmd"
 args = ["/c", "npx", "-y", "@modelcontextprotocol/server-puppeteer@latest"]
-startup_timeout_ms = 90000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
+startup_timeout_sec = 90.0
+[mcp_servers.puppeteer.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
 
-# ─── Graphiti ───────────────────────────────────── 
-[mcp_servers.graphiti]
-type = "stdio"
+[mcp_servers.sequential_thinking]
 command = "cmd"
-args = [
-  "/c",
-  "uv",
-  "run",
-  "--directory",
-  "C:/workspace/graphiti/mcp_server",   # 用正斜杠省事
-  "graphiti_mcp_server.py",
-  "--transport",
-  "stdio"
-]
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-sequential-thinking@latest"]
+startup_timeout_sec = 60.0
+[mcp_servers.sequential_thinking.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
 
-# 给 Codex 更多时间等握手（默认 10 s）
-startup_timeout_ms = 60000            # 1 min，够连 Neo4j
+[mcp_servers.stock]
+command = "cmd"
+args = ["/c", "npx", "-y", "@gonzaloafidalgo/mcp-sse-bridge", "http://82.156.17.205/cnstock/sse", "--header", "API_KEY: value"]
+startup_timeout_sec = 30.0
+[mcp_servers.stock.env]
+API_KEY = "value"
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SystemRoot = 'C:\Windows'
 
-[mcp_servers.graphiti.env]
-# 关键环境变量
-GOOGLE_API_KEY     = "AIzaSyC4YW25znj-zTc0BwEYmXf446XP8rNBFes"  # 保持原名
-MODEL_NAME         = "gemini-2.5-pro"
-EMBEDDER_MODEL     = "models/text-embedding-004"
-NEO4J_URI          = "bolt://127.0.0.1:7687"
-NEO4J_USER         = "neo4j"
-NEO4J_PASSWORD     = "graphiti123!"
+[mcp_servers.supabase]
+command = "cmd"
+args = ["/c", "npx", "-y", "@supabase/mcp-server-supabase@latest", "--read-only", "--project-ref", "${SUPABASE_PROJECT_REF}"]
+startup_timeout_sec = 120.0
+[mcp_servers.supabase.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+SUPABASE_ACCESS_TOKEN = "${SUPABASE_ACCESS_TOKEN}"
+SystemRoot = 'C:\Windows'
 
-# Windows I/O + 终端安全阀
-PYTHONUNBUFFERED   = "1"              # 立即刷新 stdout
-PYTHONIOENCODING   = "utf-8"
+[mcp_servers.taskmaster-ai]
+command = "cmd"
+args = ["/c", "npx", "-y", "--package=task-master-ai", "task-master-ai"]
+startup_timeout_sec = 60.0
+[mcp_servers.taskmaster-ai.env]
+ANTHROPIC_API_KEY = "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"
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+GOOGLE_API_KEY = "AIzaSyDPTT3g5eqGER_rSkrXfypDGyQW45AeNnc"
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
+NODE_OPTIONS = "--dns-result-order=ipv4first"
+OLLAMA_API_KEY = "YOUR_OLLAMA_API_KEY_HERE"
+OPENAI_API_KEY = "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"
+OPENROUTER_API_KEY = "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"
+SystemRoot = 'C:\Windows'
+XAI_API_KEY = "xai-NV4cljzI3pwrL60WDedxpAVnbahutH3UEur1rEephauyWpuEqgHZdEElSZfcTCyIHpnqTQDg3qoDFm90"
 
-# 其余来自系统的通用变量
-APPDATA            = "C:\\Users\\kaixie\\AppData\\Roaming"
-LOCALAPPDATA       = "C:\\Users\\kaixie\\AppData\\Local"
-HOME               = "C:\\Users\\kaixie"
-SystemRoot         = "C:\\Windows"
-NODE_OPTIONS       = "--dns-result-order=ipv4first"
- 
-
-# ─── Zen ──────────────────────────────────────────
 [mcp_servers.zen]
-type = "stdio"
 command = "cmd"
 args = ["/c", "C:/workspace/zen-mcp-server/.zen_venv/Scripts/python.exe", "C:/workspace/zen-mcp-server/server.py"]
-startup_timeout_ms = 90000
-env = { APPDATA = "C:\\Users\\kaixie\\AppData\\Roaming", LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local", HOME = "C:\\Users\\kaixie", SystemRoot = "C:\\Windows", NODE_OPTIONS = "--dns-result-order=ipv4first" }
- 
-# ─── Stock（SSE → stdio 桥）────────────────────────
-[mcp_servers.stock]
-type    = "stdio"
-command = "cmd"
-args    = [
-  "/c",
-  "npx",
-  "-y",
-  "@gonzaloafidalgo/mcp-sse-bridge",     # SSE ↔ stdio
-  "http://82.156.17.205/cnstock/sse",    # 远端 SSE URL
-  "--header", "API_KEY: value"           # 若服务需要鉴权
-]
-startup_timeout_ms = 30000
-
-[mcp_servers.stock.env]
-APPDATA      = "C:\\Users\\kaixie\\AppData\\Roaming"
-LOCALAPPDATA = "C:\\Users\\kaixie\\AppData\\Local"
-HOME         = "C:\\Users\\kaixie"
-SystemRoot   = "C:\\Windows"
+startup_timeout_sec = 90.0
+[mcp_servers.zen.env]
+APPDATA = 'C:\Users\kaixie\AppData\Roaming'
+HOME = 'C:\Users\kaixie'
+LOCALAPPDATA = 'C:\Users\kaixie\AppData\Local'
 NODE_OPTIONS = "--dns-result-order=ipv4first"
-API_KEY      = "value"                   # 可省；已放到 header
+SystemRoot = 'C:\Windows'
 
-# ─── Taskmaster-AI ────────────────────────────────
-[mcp_servers.'taskmaster-ai']
-type    = "stdio"
-command = "cmd"
-args    = ["/c", "npx", "-y", "--package=task-master-ai", "task-master-ai"]
-startup_timeout_ms = 60000
-[mcp_servers.'taskmaster-ai'.env]
-APPDATA            = "C:\\Users\\kaixie\\AppData\\Roaming"
-LOCALAPPDATA       = "C:\\Users\\kaixie\\AppData\\Local"
-HOME               = "C:\\Users\\kaixie"
-SystemRoot         = "C:\\Windows"
-NODE_OPTIONS       = "--dns-result-order=ipv4first"
 
-GOOGLE_API_KEY     = "AIzaSyDPTT3g5eqGER_rSkrXfypDGyQW45AeNnc"
-ANTHROPIC_API_KEY  = "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"
-OPENAI_API_KEY     = "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"
-OPENROUTER_API_KEY = "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"
-XAI_API_KEY        = "xai-NV4cljzI3pwrL60WDedxpAVnbahutH3UEur1rEephauyWpuEqgHZdEElSZfcTCyIHpnqTQDg3qoDFm90"
-OLLAMA_API_KEY     = "YOUR_OLLAMA_API_KEY_HERE"
 
 # ─── 工具开关 & 受信项目示例 ───────────────────────
 [tools]
@@ -163,5 +170,3 @@ trust_level = "trusted"
 
 [projects.'C:\Windows\System32']
 trust_level = "trusted"
-
-
