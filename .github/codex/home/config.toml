@@ -13,6 +13,7 @@ LOCALAPPDATA = 'c:\Users\Administrator\AppData\Local'
 NODE_OPTIONS = "--dns-result-order=ipv4first"
 SystemRoot = 'c:\Windows'
 
+
 [mcp_servers.context7]
 command = "cmd"
 args = ["/c", "npx", "-y", "@upstash/context7-mcp", "--api-key", "${CONTEXT7_API_KEY}"]
@@ -170,6 +171,22 @@ LOCALAPPDATA = 'c:\Users\Administrator\AppData\Local'
 NODE_OPTIONS = "--dns-result-order=ipv4first"
 SystemRoot = 'c:\Windows'
 
+[mcp_servers.investor_agent]
+command = "cmd"
+args = ["/c", "uvx", "investor-agent"]
+startup_timeout_sec = 120.0
+[mcp_servers.investor_agent.env]
+FRED_API_KEY = "your-fred-key"
+UV_HTTP_TIMEOUT = "180"
+UV_PYPI_MIRROR = "https://pypi.tuna.tsinghua.edu.cn/simple"
+PYTHONIOENCODING = "utf-8"
+PYTHONUNBUFFERED = "1"
+APPDATA = "C:\\Users\\Administrator\\AppData\\Roaming"
+HOME = "C:\\Users\\Administrator"
+LOCALAPPDATA = "C:\\Users\\Administrator\\AppData\\Local"
+SystemRoot = "C:\\Windows"
+
+
 
 
 # ─── 工具开关 & 受信项目示例 ───────────────────────
@@ -180,4 +197,7 @@ web_search = true
 trust_level = "trusted"
 
 [projects.'C:\Users\Administrator']
+trust_level = "trusted"
+
+[projects.'C:\WINDOWS\system32']
 trust_level = "trusted"
