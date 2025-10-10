@@ -222,7 +222,7 @@ args = [
        ]
 startup_timeout_sec = 120.0
 [mcp_servers.finData.env]
-DATA_API_TOKEN = ""
+DATA_API_TOKEN = "061e7091a1cc91739df3ec636ec096d715426710d26dd58fc7370da5"
 PROVIDER = "tushare"
 PYTHONIOENCODING = "utf-8"
 PYTHONUNBUFFERED = "1"
