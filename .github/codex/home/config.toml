@@ -130,7 +130,7 @@ startup_timeout_sec = 60.0
 [mcp_servers.taskmaster-ai.env]
 ANTHROPIC_API_KEY = "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"
 APPDATA = 'c:\Users\Administrator\AppData\Roaming'
-GOOGLE_API_KEY = "AIzaSyD3g5RMKIEIrDcmnEtPRNq_T_-vXBRsl5s"
+GOOGLE_API_KEY = ""
 HOME = 'c:\Users\Administrator'
 LOCALAPPDATA = 'c:\Users\Administrator\AppData\Local'
 NODE_OPTIONS = "--dns-result-order=ipv4first"
@@ -147,7 +147,7 @@ startup_timeout_sec = 60.0
 [mcp_servers.graphiti.env]
 APPDATA = 'c:\Users\Administrator\AppData\Roaming'
 EMBEDDER_MODEL = "models/text-embedding-004"
-GOOGLE_API_KEY = "AIzaSyC4YW25znj-zTc0BwEYmXf446XP8rNBFes"
+GOOGLE_API_KEY = ""
 HOME = 'c:\Users\Administrator'
 LOCALAPPDATA = 'c:\Users\Administrator\AppData\Local'
 MODEL_NAME = "gemini-2.5-pro"
